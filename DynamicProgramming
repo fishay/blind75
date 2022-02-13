@@ -11,3 +11,53 @@
      dfs(i,curr,total)
      first use i curr total + s[i]
      then pop use i+1, curr, total
+198. House Robber
+     class Solution:
+    def rob(self, nums: List[int]) -> int:
+        rob1, rob2 = 0, 0
+        for n in nums:
+            temp = max(rob1+n, rob2)
+            rob1 = rob2
+            rob2 = temp
+        return rob2
+213. House Robber II
+         def rob(self, nums: List[int]) -> int:
+        return max(nums[0], self.helper(nums[1:]), self.helper(nums[:-1]))
+91. Decode Ways
+             if len(s) == 1: return 1
+ 
+        legalstr = set(str(i) for i in range(1, 27))
+ 
+        dp = [0] * (len(s) + 1)
+        dp[0] = 1 
+        dp[1] = 1
+ 
+        for i in range(1, len(s)):
+            if s[i] not in legalstr:
+                if s[i - 1: i + 1] not in legalstr:
+                    return 0
+                else:
+                    dp[i + 1] = dp[i - 2 + 1] # 因为dp多了一个，所以集体加1
+            else:
+                if s[i - 1: i + 1] in legalstr:
+                    dp[i + 1] = dp[i - 1 + 1]+dp[i - 2 + 1]
+                else:
+                    dp[i + 1] = dp[i - 1 + 1]
+        return dp[-1]
+62. Unique Paths
+               row = [1]* n
+        for i in range(m-1):
+            newRow = [1]* n
+            for j in reversed(range(n-1)):
+                newRow[j] = row[j] + newRow[j+1]
+            row = newRow
+        return row[0]
+55. Jump Game
+         def canJump(self, nums: List[int]) -> bool:
+        goal = len(nums) - 1
+        for i in reversed(range(len(nums)-1)):
+            if (i + nums[i]) >= goal:
+                goal = i
+        return goal == 0
+        
+        see if can move goal to front. greedy method
