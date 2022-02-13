@@ -1,0 +1,13 @@
+1143. Longest Common Subsequence
+        dp = [[0 for j in range(len(text2)+1)] for i in range(len(text1)+1)]
+        for i in reversed(range(len(text1))):
+            for j in reversed(range(len(text2)))
+ create dp bottom up
+139. Word Break
+      dp = [False] * (len(s)+1) 
+      dp[len(s)] = Ture
+      bottom up. if dp[i +len(w)]
+39. Combination Sum
+     dfs(i,curr,total)
+     first use i curr total + s[i]
+     then pop use i+1, curr, total
